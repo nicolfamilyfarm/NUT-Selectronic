@@ -1,15 +1,17 @@
 FROM debian:bookworm-slim
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends nut-server curl jq ca-certificates libc6-dev gcc libcurl4-openssl-dev libjansson-dev \
+    && apt-get install -y --no-install-recommends nut-server curl jq ca-certificates libc6-dev gcc libcurl4-openssl-dev libjansson-dev man-db less \
     && rm -rf /var/lib/apt/lists/*
 
 COPY selectronic-nut-poller.c /usr/local/src/selectronic-nut-poller.c
+COPY selectronic-nut-poller.1 /usr/share/man/man1/selectronic-nut-poller.1
 COPY entrypoint.sh /usr/local/sbin/selectronic-nut-entrypoint
 RUN gcc -O2 -Wall -Wextra -Wpedantic -std=c11 \
       -o /usr/local/sbin/selectronic-nut-poller \
       /usr/local/src/selectronic-nut-poller.c -lcurl -ljansson \
-    && chmod 0755 /usr/local/sbin/selectronic-nut-entrypoint /usr/local/sbin/selectronic-nut-poller
+    && chmod 0755 /usr/local/sbin/selectronic-nut-entrypoint /usr/local/sbin/selectronic-nut-poller \
+    && mandb -q
 
 EXPOSE 3493
 ENTRYPOINT ["/usr/local/sbin/selectronic-nut-entrypoint"]

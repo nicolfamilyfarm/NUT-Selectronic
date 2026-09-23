@@ -41,6 +41,22 @@ podman build -t selectronic-nut:latest -f Containerfile .
 
 For Docker, use the equivalent `docker build` command and image name.
 
+The image includes the generated `selectronic-nut-poller(1)` manual page and
+the `man` command. View it with:
+
+```sh
+podman exec -it selectronic-nut man selectronic-nut-poller
+```
+
+The page is generated from the C comments with:
+
+```sh
+cd container
+mkdir -p build/doxygen
+doxygen Doxyfile
+cp build/doxygen/man/man1/selectronic_nut_poller.1 selectronic-nut-poller.1
+```
+
 ## Configuration
 
 The following variables are supported by the container:

@@ -43,6 +43,16 @@ The container has two internal functions:
 NUT clients connect to the published container port. The inverter does not need
 to know about NUT clients, Home Assistant, or the web monitor.
 
+## NUT Web Monitor example
+
+The following screenshot shows the Selectronic virtual UPS displayed by NUT Web
+Monitor alongside other NUT devices:
+
+![Selectronic virtual UPS in NUT Web Monitor](docs/NUT-Monitor.png)
+
+The monitor connects to the published NUT endpoint using the UPS name
+`selectronic` and the configured NUT credentials.
+
 ## Requirements
 
 - A Selectronic SP PRO with its local web interface enabled.
@@ -86,7 +96,32 @@ docker build -t selectronic-nut:latest -f Containerfile .
 ```
 
 The image compiles the C poller and includes NUT server, libcurl, Jansson,
-`curl`, and `jq`.
+`curl`, `jq`, and the `man` command.
+
+## View the manual page
+
+The image includes the generated manual page for the poller:
+
+```sh
+podman exec -it selectronic-nut man selectronic-nut-poller
+```
+
+For non-interactive output:
+
+```sh
+podman exec selectronic-nut sh -c 'MANPAGER=cat man selectronic-nut-poller'
+```
+
+The page is generated from the Doxygen comments in
+`container/selectronic-nut-poller.c`. After changing those comments, regenerate
+the checked-in page with Doxygen:
+
+```sh
+cd container
+mkdir -p build/doxygen
+doxygen Doxyfile
+cp build/doxygen/man/man1/selectronic_nut_poller.1 selectronic-nut-poller.1
+```
 
 ## Configuration variables
 
@@ -335,8 +370,11 @@ client, Home Assistant configuration, and web monitor entry.
 | `container/Containerfile` | Builds the image and compiles the poller. |
 | `container/entrypoint.sh` | Fetches metadata and starts the NUT server. |
 | `container/selectronic-nut-poller.c` | Polls the Selectronic API and writes NUT values. |
+| `container/Doxyfile` | Generates API documentation and the section 1 manual page. |
+| `container/selectronic-nut-poller.1` | Generated manual page installed in the image. |
 | `docs/selectronic-nut-workflow.dot` | Graphviz source for the workflow diagram. |
 | `docs/selectronic-nut-workflow.svg` | Generated workflow diagram displayed above. |
+| `docs/NUT-Monitor.png` | Example NUT Web Monitor screenshot. |
 | `container/README.md` | Container-specific reference documentation. |
 
 ## License and contributions

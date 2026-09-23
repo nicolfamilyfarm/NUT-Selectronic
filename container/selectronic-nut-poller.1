@@ -1,0 +1,37 @@
+.TH "selectronic_nut_poller" 1 "Thu Sep 24 2026" "selectronic-nut-poller" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+selectronic_nut_poller \- selectronic-nut-poller - poll a Selectronic SP PRO and publish NUT values 
+
+.SH "SYNOPSIS"
+.PP
+.PP
+.nf
+SELECTRONIC_IP=INVERTER_IP SELECTRONIC_DEVICE_ID=DEVICE_ID \
+selectronic-nut-poller
+.fi
+.PP
+.SH "DESCRIPTION"
+.PP
+Performs one poll of the Selectronic SP PRO local HTTP JSON point endpoint and atomically writes a NUT dummy-ups definition file\&. The container invokes it repeatedly\&. A failed poll returns a non-zero status so the caller can retain the last valid NUT data\&.
+.SH "ENVIRONMENT"
+.PP
+Required: SELECTRONIC_IP and SELECTRONIC_DEVICE_ID\&.
+.PP
+Optional: SELECTRONIC_MODEL (default SP PRO), SELECTRONIC_SERIAL, NUT_DEFINITION_FILE (default /etc/nut/selectronic\&.dev), SELECTRONIC_BATTERY_CAPACITY_KWH (default 0), SELECTRONIC_RUNTIME_EFFICIENCY (default 0\&.9), SELECTRONIC_INVERTER_CAPACITY_KW (default 5\&.0), SELECTRONIC_SOLAR_CAPACITY_KW (default 0), SELECTRONIC_AC_VOLTAGE (default 240), SELECTRONIC_BATTERY_VOLTAGE (default 0), SELECTRONIC_SHUTDOWN_PERCENT (default 10), SELECTRONIC_LOW_BATTERY (default 20), and SELECTRONIC_AC_MODE (default always_online)\&.
+.SH "OUTPUT"
+.PP
+Writes standard NUT values and Selectronic telemetry to the configured dummy-ups definition file using an atomic temporary-file rename\&.
+.SH "EXIT STATUS"
+.PP
+Returns 0 on success and non-zero when configuration, HTTP, JSON, or file output processing fails\&.
+.SH "EXAMPLE"
+.PP
+.PP
+.nf
+SELECTRONIC_IP=192\&.0\&.2\&.10 SELECTRONIC_DEVICE_ID=DEVICE_ID \
+SELECTRONIC_BATTERY_CAPACITY_KWH=10 selectronic-nut-poller
+.fi
+.PP
+ 
