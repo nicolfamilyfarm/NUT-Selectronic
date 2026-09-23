@@ -14,15 +14,13 @@
       <stop offset="0" stop-color="#7c3aed"/>
       <stop offset="1" stop-color="#6d28d9"/>
     </linearGradient>
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0f172a" flood-opacity=".18"/>
-    </filter>
     <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
       <path d="M0,0 L12,6 L0,12 z" fill="#475569"/>
     </marker>
     <style>
-      .heading { font: 700 25px sans-serif; fill: white; }
-      .body { font: 500 18px sans-serif; fill: white; }
+      .heading { font-family: sans-serif; font-size: 20px; font-weight: 700; fill: white; }
+      .source-heading { font-size: 22px; }
+      .body { font-family: sans-serif; font-size: 16px; font-weight: 500; fill: white; }
       .small { font: 500 16px sans-serif; fill: #334155; }
       .title { font: 700 30px sans-serif; fill: #0f172a; }
       .arrow-label { font: 600 16px sans-serif; fill: #334155; }
@@ -32,15 +30,15 @@
   <text x="700" y="55" text-anchor="middle" class="title">Selectronic SP PRO → virtual NUT UPS workflow</text>
   <text x="700" y="88" text-anchor="middle" class="small">Local JSON telemetry is translated into standard NUT variables for monitoring and automation.</text>
 
-  <g filter="url(#shadow)">
-    <rect x="55" y="205" rx="18" width="270" height="160" fill="url(#source)"/>
-    <text x="190" y="250" text-anchor="middle" class="heading">Selectronic SP PRO</text>
+  <g>
+    <rect x="55" y="205" rx="18" width="270" height="160" fill="url(#source)" stroke="#0f5250" stroke-width="2"/>
+    <text x="190" y="250" text-anchor="middle" class="heading source-heading">Selectronic SP PRO</text>
     <text x="190" y="285" text-anchor="middle" class="body">Inverter / battery / solar</text>
     <text x="190" y="320" text-anchor="middle" class="body">Local HTTP JSON API</text>
   </g>
 
-  <g filter="url(#shadow)">
-    <rect x="390" y="180" rx="18" width="300" height="210" fill="url(#service)"/>
+  <g>
+    <rect x="390" y="180" rx="18" width="300" height="210" fill="url(#service)" stroke="#1e40af" stroke-width="2"/>
     <text x="540" y="225" text-anchor="middle" class="heading">Selectronic NUT program</text>
     <text x="540" y="263" text-anchor="middle" class="body">Podman / Docker container</text>
     <text x="540" y="298" text-anchor="middle" class="body">C poller + metadata lookup</text>
@@ -48,21 +46,21 @@
     <text x="540" y="368" text-anchor="middle" class="body">Atomic NUT data updates</text>
   </g>
 
-  <g filter="url(#shadow)">
-    <rect x="755" y="205" rx="18" width="280" height="160" fill="url(#service)"/>
+  <g>
+    <rect x="755" y="205" rx="18" width="280" height="160" fill="url(#service)" stroke="#1e40af" stroke-width="2"/>
     <text x="895" y="250" text-anchor="middle" class="heading">Virtual NUT UPS</text>
     <text x="895" y="285" text-anchor="middle" class="body">UPS name: selectronic</text>
     <text x="895" y="320" text-anchor="middle" class="body">NUT protocol / TCP 3493</text>
   </g>
 
-  <g filter="url(#shadow)">
-    <rect x="1110" y="120" rx="16" width="235" height="95" fill="url(#client)"/>
+  <g>
+    <rect x="1110" y="120" rx="16" width="235" height="95" fill="url(#client)" stroke="#5b21b6" stroke-width="2"/>
     <text x="1227" y="160" text-anchor="middle" class="heading">Home Assistant</text>
     <text x="1227" y="190" text-anchor="middle" class="body">NUT integration</text>
-    <rect x="1110" y="263" rx="16" width="235" height="95" fill="url(#client)"/>
+    <rect x="1110" y="263" rx="16" width="235" height="95" fill="url(#client)" stroke="#5b21b6" stroke-width="2"/>
     <text x="1227" y="303" text-anchor="middle" class="heading">NUT Web Monitor</text>
     <text x="1227" y="333" text-anchor="middle" class="body">Browser dashboard</text>
-    <rect x="1110" y="406" rx="16" width="235" height="95" fill="url(#client)"/>
+    <rect x="1110" y="406" rx="16" width="235" height="95" fill="url(#client)" stroke="#5b21b6" stroke-width="2"/>
     <text x="1227" y="446" text-anchor="middle" class="heading">NUT monitor</text>
     <text x="1227" y="476" text-anchor="middle" class="body">upsmon / client tools</text>
   </g>
@@ -71,11 +69,13 @@
   <text x="355" y="265" text-anchor="middle" class="arrow-label">JSON</text>
   <line x1="690" y1="285" x2="750" y2="285" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
   <text x="720" y="265" text-anchor="middle" class="arrow-label">NUT data</text>
-  <line x1="1035" y1="285" x2="1095" y2="285" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
-  <text x="1065" y="265" text-anchor="middle" class="arrow-label">TCP</text>
-  <path d="M1070 285 L1070 167 L1095 167" fill="none" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
-  <path d="M1070 285 L1095 310" fill="none" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
-  <path d="M1070 285 L1070 453 L1095 453" fill="none" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
+  <line x1="1035" y1="285" x2="1060" y2="285" stroke="#475569" stroke-width="4"/>
+  <circle cx="1060" cy="285" r="6" fill="#475569"/>
+  <text x="1060" y="135" text-anchor="middle" class="arrow-label">NUT clients</text>
+  <line x1="1060" y1="167" x2="1060" y2="453" stroke="#475569" stroke-width="4"/>
+  <line x1="1060" y1="167" x2="1095" y2="167" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
+  <line x1="1060" y1="310" x2="1095" y2="310" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
+  <line x1="1060" y1="453" x2="1095" y2="453" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
 
   <text x="700" y="570" text-anchor="middle" class="small">The container is read-only with respect to the inverter API; shutdown actions are governed by each NUT client's upsmon policy.</text>
 </svg>
