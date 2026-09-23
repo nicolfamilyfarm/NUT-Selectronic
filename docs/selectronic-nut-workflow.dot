@@ -1,0 +1,88 @@
+digraph selectronic_nut_workflow {
+    graph [
+        rankdir=LR
+        bgcolor="#f8fafc"
+        pad="0.35"
+        nodesep="0.45"
+        ranksep="0.85"
+        splines=ortho
+        outputorder=edgesfirst
+        fontname="Arial"
+        labelloc=t
+        label="Selectronic SP PRO to virtual NUT UPS workflow"
+        fontsize=24
+        fontcolor="#0f172a"
+    ]
+
+    node [
+        shape=box
+        style="rounded,filled"
+        fontname="Arial"
+        fontsize=15
+        fontcolor="white"
+        color="#1e40af"
+        penwidth=1.5
+        margin="0.22,0.16"
+    ]
+
+    edge [
+        color="#475569"
+        fontname="Arial"
+        fontsize=12
+        fontcolor="#334155"
+        penwidth=2
+        arrowsize=0.8
+    ]
+
+    inverter [
+        label="Selectronic SP PRO\n\nInverter / battery / solar\nLocal HTTP JSON API"
+        fillcolor="#0f766e"
+        color="#0f5250"
+    ]
+
+    program [
+        label="Selectronic NUT program\n\nPodman / Docker container\nC poller + metadata lookup\nRuntime and status logic\nAtomic NUT data updates"
+        fillcolor="#2563eb"
+    ]
+
+    virtual_ups [
+        label="Virtual NUT UPS\n\nUPS name: selectronic\nNUT protocol / TCP 3493"
+        fillcolor="#2563eb"
+    ]
+
+    subgraph cluster_clients {
+        label="NUT clients"
+        fontname="Arial"
+        fontsize=14
+        fontcolor="#334155"
+        color="#cbd5e1"
+        penwidth=1
+        style="rounded,dashed"
+
+        home_assistant [
+            label="Home Assistant\n\nNUT integration"
+            fillcolor="#7c3aed"
+            color="#5b21b6"
+        ]
+
+        nut_web_monitor [
+            label="NUT Web Monitor\n\nBrowser dashboard"
+            fillcolor="#7c3aed"
+            color="#5b21b6"
+        ]
+
+        nut_monitor [
+            label="NUT monitor\n\nupsmon / client tools"
+            fillcolor="#7c3aed"
+            color="#5b21b6"
+        ]
+
+        { rank=same; home_assistant; nut_web_monitor; nut_monitor }
+    }
+
+    inverter -> program [label="JSON"]
+    program -> virtual_ups [label="NUT data"]
+    virtual_ups -> home_assistant [label="NUT / TCP"]
+    virtual_ups -> nut_web_monitor
+    virtual_ups -> nut_monitor
+}

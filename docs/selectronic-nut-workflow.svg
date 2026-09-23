@@ -1,81 +1,99 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="620" viewBox="0 0 1400 620" role="img" aria-labelledby="title desc">
-  <title id="title">Selectronic SP PRO to NUT workflow</title>
-  <desc id="desc">The Selectronic inverter sends local JSON to the container program, which publishes a virtual NUT UPS consumed by Home Assistant, NUT Web Monitor, and NUT monitor clients.</desc>
-  <defs>
-    <linearGradient id="source" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0" stop-color="#0f766e"/>
-      <stop offset="1" stop-color="#115e59"/>
-    </linearGradient>
-    <linearGradient id="service" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0" stop-color="#2563eb"/>
-      <stop offset="1" stop-color="#1d4ed8"/>
-    </linearGradient>
-    <linearGradient id="client" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0" stop-color="#7c3aed"/>
-      <stop offset="1" stop-color="#6d28d9"/>
-    </linearGradient>
-    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
-      <path d="M0,0 L12,6 L0,12 z" fill="#475569"/>
-    </marker>
-    <style>
-      .heading { font-family: sans-serif; font-size: 20px; font-weight: 700; fill: white; }
-      .source-heading { font-size: 22px; }
-      .body { font-family: sans-serif; font-size: 16px; font-weight: 500; fill: white; }
-      .small { font: 500 16px sans-serif; fill: #334155; }
-      .title { font: 700 30px sans-serif; fill: #0f172a; }
-      .arrow-label { font: 600 16px sans-serif; fill: #334155; }
-    </style>
-  </defs>
-  <rect width="1400" height="620" fill="#f8fafc"/>
-  <text x="700" y="55" text-anchor="middle" class="title">Selectronic SP PRO → virtual NUT UPS workflow</text>
-  <text x="700" y="88" text-anchor="middle" class="small">Local JSON telemetry is translated into standard NUT variables for monitoring and automation.</text>
-
-  <g>
-    <rect x="55" y="205" rx="18" width="270" height="160" fill="url(#source)" stroke="#0f5250" stroke-width="2"/>
-    <text x="190" y="250" text-anchor="middle" class="heading source-heading">Selectronic SP PRO</text>
-    <text x="190" y="285" text-anchor="middle" class="body">Inverter / battery / solar</text>
-    <text x="190" y="320" text-anchor="middle" class="body">Local HTTP JSON API</text>
-  </g>
-
-  <g>
-    <rect x="390" y="180" rx="18" width="300" height="210" fill="url(#service)" stroke="#1e40af" stroke-width="2"/>
-    <text x="540" y="225" text-anchor="middle" class="heading">Selectronic NUT program</text>
-    <text x="540" y="263" text-anchor="middle" class="body">Podman / Docker container</text>
-    <text x="540" y="298" text-anchor="middle" class="body">C poller + metadata lookup</text>
-    <text x="540" y="333" text-anchor="middle" class="body">Runtime and status logic</text>
-    <text x="540" y="368" text-anchor="middle" class="body">Atomic NUT data updates</text>
-  </g>
-
-  <g>
-    <rect x="755" y="205" rx="18" width="280" height="160" fill="url(#service)" stroke="#1e40af" stroke-width="2"/>
-    <text x="895" y="250" text-anchor="middle" class="heading">Virtual NUT UPS</text>
-    <text x="895" y="285" text-anchor="middle" class="body">UPS name: selectronic</text>
-    <text x="895" y="320" text-anchor="middle" class="body">NUT protocol / TCP 3493</text>
-  </g>
-
-  <g>
-    <rect x="1110" y="120" rx="16" width="235" height="95" fill="url(#client)" stroke="#5b21b6" stroke-width="2"/>
-    <text x="1227" y="160" text-anchor="middle" class="heading">Home Assistant</text>
-    <text x="1227" y="190" text-anchor="middle" class="body">NUT integration</text>
-    <rect x="1110" y="263" rx="16" width="235" height="95" fill="url(#client)" stroke="#5b21b6" stroke-width="2"/>
-    <text x="1227" y="303" text-anchor="middle" class="heading">NUT Web Monitor</text>
-    <text x="1227" y="333" text-anchor="middle" class="body">Browser dashboard</text>
-    <rect x="1110" y="406" rx="16" width="235" height="95" fill="url(#client)" stroke="#5b21b6" stroke-width="2"/>
-    <text x="1227" y="446" text-anchor="middle" class="heading">NUT monitor</text>
-    <text x="1227" y="476" text-anchor="middle" class="body">upsmon / client tools</text>
-  </g>
-
-  <line x1="325" y1="285" x2="385" y2="285" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
-  <text x="355" y="265" text-anchor="middle" class="arrow-label">JSON</text>
-  <line x1="690" y1="285" x2="750" y2="285" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
-  <text x="720" y="265" text-anchor="middle" class="arrow-label">NUT data</text>
-  <line x1="1035" y1="285" x2="1060" y2="285" stroke="#475569" stroke-width="4"/>
-  <circle cx="1060" cy="285" r="6" fill="#475569"/>
-  <text x="1060" y="135" text-anchor="middle" class="arrow-label">NUT clients</text>
-  <line x1="1060" y1="167" x2="1060" y2="453" stroke="#475569" stroke-width="4"/>
-  <line x1="1060" y1="167" x2="1095" y2="167" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
-  <line x1="1060" y1="310" x2="1095" y2="310" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
-  <line x1="1060" y1="453" x2="1095" y2="453" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
-
-  <text x="700" y="570" text-anchor="middle" class="small">The container is read-only with respect to the inverter API; shutdown actions are governed by each NUT client's upsmon policy.</text>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.44.0 (0)
+ -->
+<!-- Title: selectronic_nut_workflow Pages: 1 -->
+<svg width="1171pt" height="431pt"
+ viewBox="0.00 0.00 1171.40 431.40" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(25.2 406.2)">
+<title>selectronic_nut_workflow</title>
+<polygon fill="#f8fafc" stroke="transparent" points="-25.2,25.2 -25.2,-406.2 1146.2,-406.2 1146.2,25.2 -25.2,25.2"/>
+<text text-anchor="middle" x="560.5" y="-357.8" font-family="Arial" font-size="24.00" fill="#0f172a">Selectronic SP PRO to virtual NUT UPS workflow</text>
+<g id="clust1" class="cluster">
+<title>cluster_clients</title>
+<path fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="5,2" d="M939,-8C939,-8 1101,-8 1101,-8 1107,-8 1113,-14 1113,-20 1113,-20 1113,-327 1113,-327 1113,-333 1107,-339 1101,-339 1101,-339 939,-339 939,-339 933,-339 927,-333 927,-327 927,-327 927,-20 927,-20 927,-14 933,-8 939,-8"/>
+<text text-anchor="middle" x="1020" y="-323.8" font-family="Arial" font-size="14.00" fill="#334155">NUT clients</text>
+</g>
+<!-- inverter&#45;&gt;program -->
+<g id="edge1" class="edge">
+<title>inverter&#45;&gt;program</title>
+<path fill="none" stroke="#475569" stroke-width="2" d="M190.36,-162C190.36,-162 276.76,-162 276.76,-162"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="2" points="276.76,-164.8 284.76,-162 276.76,-159.2 276.76,-164.8"/>
+<text text-anchor="middle" x="237.5" y="-165.4" font-family="Arial" font-size="12.00" fill="#334155">JSON</text>
+</g>
+<!-- program&#45;&gt;virtual_ups -->
+<g id="edge2" class="edge">
+<title>program&#45;&gt;virtual_ups</title>
+<path fill="none" stroke="#475569" stroke-width="2" d="M500,-162C500,-162 605.93,-162 605.93,-162"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="2" points="605.93,-164.8 613.93,-162 605.93,-159.2 605.93,-164.8"/>
+<text text-anchor="middle" x="557" y="-165.4" font-family="Arial" font-size="12.00" fill="#334155">NUT data</text>
+</g>
+<!-- virtual_ups&#45;&gt;home_assistant -->
+<g id="edge3" class="edge">
+<title>virtual_ups&#45;&gt;home_assistant</title>
+<path fill="none" stroke="#475569" stroke-width="2" d="M814.2,-204.25C903.44,-204.25 1020,-204.25 1020,-204.25 1020,-204.25 1020,-223.75 1020,-223.75"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="2" points="1017.2,-223.75 1020,-231.75 1022.8,-223.75 1017.2,-223.75"/>
+<text text-anchor="middle" x="874.5" y="-246.4" font-family="Arial" font-size="12.00" fill="#334155">NUT / TCP</text>
+</g>
+<!-- virtual_ups&#45;&gt;nut_web_monitor -->
+<g id="edge4" class="edge">
+<title>virtual_ups&#45;&gt;nut_web_monitor</title>
+<path fill="none" stroke="#475569" stroke-width="2" d="M814.2,-162C814.2,-162 930.95,-162 930.95,-162"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="2" points="930.95,-164.8 938.95,-162 930.95,-159.2 930.95,-164.8"/>
+</g>
+<!-- virtual_ups&#45;&gt;nut_monitor -->
+<g id="edge5" class="edge">
+<title>virtual_ups&#45;&gt;nut_monitor</title>
+<path fill="none" stroke="#475569" stroke-width="2" d="M814.2,-119.75C903.44,-119.75 1020,-119.75 1020,-119.75 1020,-119.75 1020,-100.25 1020,-100.25"/>
+<polygon fill="#475569" stroke="#475569" stroke-width="2" points="1022.8,-100.25 1020,-92.25 1017.2,-100.25 1022.8,-100.25"/>
+</g>
+<!-- inverter -->
+<g id="node1" class="node">
+<title>inverter</title>
+<path fill="#0f766e" stroke="#0f5250" stroke-width="1.5" d="M178,-208.5C178,-208.5 12,-208.5 12,-208.5 6,-208.5 0,-202.5 0,-196.5 0,-196.5 0,-127.5 0,-127.5 0,-121.5 6,-115.5 12,-115.5 12,-115.5 178,-115.5 178,-115.5 184,-115.5 190,-121.5 190,-127.5 190,-127.5 190,-196.5 190,-196.5 190,-202.5 184,-208.5 178,-208.5"/>
+<text text-anchor="middle" x="95" y="-184.5" font-family="Arial" font-size="15.00" fill="white">Selectronic SP PRO</text>
+<text text-anchor="middle" x="95" y="-149.5" font-family="Arial" font-size="15.00" fill="white">Inverter / battery / solar</text>
+<text text-anchor="middle" x="95" y="-132.5" font-family="Arial" font-size="15.00" fill="white">Local HTTP JSON API</text>
+</g>
+<!-- program -->
+<g id="node2" class="node">
+<title>program</title>
+<path fill="#2563eb" stroke="#1e40af" stroke-width="1.5" d="M488,-225.5C488,-225.5 297,-225.5 297,-225.5 291,-225.5 285,-219.5 285,-213.5 285,-213.5 285,-110.5 285,-110.5 285,-104.5 291,-98.5 297,-98.5 297,-98.5 488,-98.5 488,-98.5 494,-98.5 500,-104.5 500,-110.5 500,-110.5 500,-213.5 500,-213.5 500,-219.5 494,-225.5 488,-225.5"/>
+<text text-anchor="middle" x="392.5" y="-201.5" font-family="Arial" font-size="15.00" fill="white">Selectronic NUT program</text>
+<text text-anchor="middle" x="392.5" y="-166.5" font-family="Arial" font-size="15.00" fill="white">Podman / Docker container</text>
+<text text-anchor="middle" x="392.5" y="-149.5" font-family="Arial" font-size="15.00" fill="white">C poller + metadata lookup</text>
+<text text-anchor="middle" x="392.5" y="-132.5" font-family="Arial" font-size="15.00" fill="white">Runtime and status logic</text>
+<text text-anchor="middle" x="392.5" y="-115.5" font-family="Arial" font-size="15.00" fill="white">Atomic NUT data updates</text>
+</g>
+<!-- virtual_ups -->
+<g id="node3" class="node">
+<title>virtual_ups</title>
+<path fill="#2563eb" stroke="#1e40af" stroke-width="1.5" d="M802,-208.5C802,-208.5 626,-208.5 626,-208.5 620,-208.5 614,-202.5 614,-196.5 614,-196.5 614,-127.5 614,-127.5 614,-121.5 620,-115.5 626,-115.5 626,-115.5 802,-115.5 802,-115.5 808,-115.5 814,-121.5 814,-127.5 814,-127.5 814,-196.5 814,-196.5 814,-202.5 808,-208.5 802,-208.5"/>
+<text text-anchor="middle" x="714" y="-184.5" font-family="Arial" font-size="15.00" fill="white">Virtual NUT UPS</text>
+<text text-anchor="middle" x="714" y="-149.5" font-family="Arial" font-size="15.00" fill="white">UPS name: selectronic</text>
+<text text-anchor="middle" x="714" y="-132.5" font-family="Arial" font-size="15.00" fill="white">NUT protocol / TCP 3493</text>
+</g>
+<!-- home_assistant -->
+<g id="node4" class="node">
+<title>home_assistant</title>
+<path fill="#7c3aed" stroke="#5b21b6" stroke-width="1.5" d="M1076.5,-308C1076.5,-308 963.5,-308 963.5,-308 957.5,-308 951.5,-302 951.5,-296 951.5,-296 951.5,-244 951.5,-244 951.5,-238 957.5,-232 963.5,-232 963.5,-232 1076.5,-232 1076.5,-232 1082.5,-232 1088.5,-238 1088.5,-244 1088.5,-244 1088.5,-296 1088.5,-296 1088.5,-302 1082.5,-308 1076.5,-308"/>
+<text text-anchor="middle" x="1020" y="-284" font-family="Arial" font-size="15.00" fill="white">Home Assistant</text>
+<text text-anchor="middle" x="1020" y="-249" font-family="Arial" font-size="15.00" fill="white">NUT integration</text>
+</g>
+<!-- nut_web_monitor -->
+<g id="node5" class="node">
+<title>nut_web_monitor</title>
+<path fill="#7c3aed" stroke="#5b21b6" stroke-width="1.5" d="M1089,-200C1089,-200 951,-200 951,-200 945,-200 939,-194 939,-188 939,-188 939,-136 939,-136 939,-130 945,-124 951,-124 951,-124 1089,-124 1089,-124 1095,-124 1101,-130 1101,-136 1101,-136 1101,-188 1101,-188 1101,-194 1095,-200 1089,-200"/>
+<text text-anchor="middle" x="1020" y="-176" font-family="Arial" font-size="15.00" fill="white">NUT Web Monitor</text>
+<text text-anchor="middle" x="1020" y="-141" font-family="Arial" font-size="15.00" fill="white">Browser dashboard</text>
+</g>
+<!-- nut_monitor -->
+<g id="node6" class="node">
+<title>nut_monitor</title>
+<path fill="#7c3aed" stroke="#5b21b6" stroke-width="1.5" d="M1093,-92C1093,-92 947,-92 947,-92 941,-92 935,-86 935,-80 935,-80 935,-28 935,-28 935,-22 941,-16 947,-16 947,-16 1093,-16 1093,-16 1099,-16 1105,-22 1105,-28 1105,-28 1105,-80 1105,-80 1105,-86 1099,-92 1093,-92"/>
+<text text-anchor="middle" x="1020" y="-68" font-family="Arial" font-size="15.00" fill="white">NUT monitor</text>
+<text text-anchor="middle" x="1020" y="-33" font-family="Arial" font-size="15.00" fill="white">upsmon / client tools</text>
+</g>
+</g>
 </svg>

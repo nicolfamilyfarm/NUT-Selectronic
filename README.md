@@ -10,6 +10,15 @@ NUT Web Monitor, and Home Assistant.
 
 ![Selectronic to NUT workflow](docs/selectronic-nut-workflow.svg)
 
+The diagram is generated from [`docs/selectronic-nut-workflow.dot`](docs/selectronic-nut-workflow.dot).
+Graphviz is only required when changing the diagram source. Install the
+`graphviz` package using the package manager for your operating system, then
+regenerate it with:
+
+```sh
+dot -Tsvg docs/selectronic-nut-workflow.dot -o docs/selectronic-nut-workflow.svg
+```
+
 ## Features
 
 - Polls the Selectronic local JSON API without cloud services.
@@ -326,6 +335,8 @@ client, Home Assistant configuration, and web monitor entry.
 | `container/Containerfile` | Builds the image and compiles the poller. |
 | `container/entrypoint.sh` | Fetches metadata and starts the NUT server. |
 | `container/selectronic-nut-poller.c` | Polls the Selectronic API and writes NUT values. |
+| `docs/selectronic-nut-workflow.dot` | Graphviz source for the workflow diagram. |
+| `docs/selectronic-nut-workflow.svg` | Generated workflow diagram displayed above. |
 | `container/README.md` | Container-specific reference documentation. |
 
 ## License and contributions
