@@ -16,7 +16,7 @@ export SELECTRONIC_SERIAL SELECTRONIC_INVERTER_CAPACITY_KW SELECTRONIC_MODEL
 mkdir -p /run/nut /var/run/nut
 chown nut:nut /run/nut /var/run/nut
 
-cat > /etc/nut/ups.conf <<'EOF'
+cat > /etc/nut/ups.conf <<EOF
 [selectronic]
     driver = dummy-ups
     port = /etc/nut/selectronic.dev
@@ -41,7 +41,7 @@ cat > /etc/nut/nut.conf <<'EOF'
 MODE=netserver
 EOF
 
-cat > /etc/nut/selectronic.dev <<'EOF'
+cat > /etc/nut/selectronic.dev <<EOF
 ups.mfr: Selectronic
 ups.model: ${SELECTRONIC_MODEL}
 ups.status: OB LB
