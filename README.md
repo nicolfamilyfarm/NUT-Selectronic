@@ -53,6 +53,11 @@ Monitor alongside other NUT devices:
 The monitor connects to the published NUT endpoint using the UPS name
 `selectronic` and the configured NUT credentials.
 
+Home Assistant can discover the same NUT server through its Network UPS Tools
+integration:
+
+![Selectronic virtual UPS in Home Assistant](docs/Home-Assistant-NUT.png)
+
 ## Requirements
 
 - A Selectronic SP PRO with its local web interface enabled.
@@ -375,6 +380,7 @@ client, Home Assistant configuration, and web monitor entry.
 | `docs/selectronic-nut-workflow.dot` | Graphviz source for the workflow diagram. |
 | `docs/selectronic-nut-workflow.svg` | Generated workflow diagram displayed above. |
 | `docs/NUT-Monitor.png` | Example NUT Web Monitor screenshot. |
+| `docs/Home-Assistant-NUT.png` | Example Home Assistant NUT integration screenshot. |
 | `container/README.md` | Container-specific reference documentation. |
 
 ## License and contributions
